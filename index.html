@@ -21,6 +21,9 @@
       animation: rotate 60s linear infinite;
       transform-origin: 50% 50%;
       transition: filter 0.5s ease;
+
+      user-select: none;
+      pointer-events: none;
     }
 
     @keyframes rotate {
@@ -28,7 +31,6 @@
       to   { transform: rotate(360deg); }
     }
 
-    /* 🌙 夜间模式 */
     @media (prefers-color-scheme: dark) {
       body {
         background-color: black;
@@ -41,6 +43,6 @@
   </style>
 </head>
 <body>
-  <img src="henry_ring_transparent.png" alt="Rotating Ring" class="rotating" />
+  <img src="henry_ring_transparent.png" alt="Rotating Ring" class="rotating" draggable="false" />
 </body>
 </html>
