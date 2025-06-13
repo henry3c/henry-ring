@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  <meta name="google" content="notranslate">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta charset="UTF-8">
+  <title translate="no">Murph</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    img.rotating {
+      width: 40vmin;
+      height: 40vmin;
+      animation: rotate 60s linear infinite;
+      transform-origin: 50% 50%;
+      transition: filter 0.5s ease;
+      pointer-events: none;
+      -webkit-user-drag: none;
+      -webkit-touch-callout: none;
+      user-select: none;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: black;
+      }
+
+      img.rotating {
+        filter: invert(1);
+      }
+    }
+  </style>
+  <script>
+    // 全面拦截右键、双指缩放、手势、长按行为（防保存）
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('gesturestart', e => e.preventDefault());
+    document.addEventListener('gesturechange', e => e.preventDefault());
+    document.addEventListener('gestureend', e => e.preventDefault());
+
+    let touchTime;
+    document.addEventListener('touchstart', e => {
+      if (e.touches.length > 1) e.preventDefault(); // 阻止多指
+      touchTime = setTimeout(() => e.preventDefault(), 300); // 防止长按
+    }, { passive: false });
+
+    document.addEventListener('touchend', () => {
+      clearTimeout(touchTime);
+    });
+  </script>
+</head>
+<body>
+  <img src="MURPH_ring_hd.png" alt="Rotating Ring" class="rotating" draggable="false" />
+</body>
+</html>
