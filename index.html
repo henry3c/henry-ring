@@ -3,10 +3,16 @@
 <html lang="en" translate="no">
 <head>
   <meta name="google" content="notranslate">
-  <link rel="icon" type="image/png" href="favicon.png">
   <meta charset="UTF-8">
   <title translate="no">Murph</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+  <!-- 多平台图标支持 -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
   <style>
     html, body {
       margin: 0;
@@ -53,7 +59,6 @@
     }
   </style>
   <script>
-    // 全面拦截右键、双指缩放、手势、长按行为（防保存）
     document.addEventListener('contextmenu', e => e.preventDefault());
     document.addEventListener('gesturestart', e => e.preventDefault());
     document.addEventListener('gesturechange', e => e.preventDefault());
@@ -61,8 +66,8 @@
 
     let touchTime;
     document.addEventListener('touchstart', e => {
-      if (e.touches.length > 1) e.preventDefault(); // 阻止多指
-      touchTime = setTimeout(() => e.preventDefault(), 300); // 防止长按
+      if (e.touches.length > 1) e.preventDefault();
+      touchTime = setTimeout(() => e.preventDefault(), 300);
     }, { passive: false });
 
     document.addEventListener('touchend', () => {
