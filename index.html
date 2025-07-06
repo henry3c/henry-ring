@@ -79,6 +79,9 @@
     }
 
     @media (prefers-color-scheme: light) {
+      .ring {
+        filter: invert(1);
+      }
       body {
         background-color: white;
       }
@@ -109,7 +112,13 @@
     document.addEventListener('touchend', () => {
       clearTimeout(touchTime);
     });
-  </script>
+  
+    document.addEventListener('selectstart', e => e.preventDefault());
+    document.addEventListener('copy', e => e.preventDefault());
+    document.addEventListener('dragstart', e => e.preventDefault());
+    document.addEventListener('dblclick', e => e.preventDefault());
+    document.addEventListener('mousedown', e => e.preventDefault());
+    </script>
 </head>
 <body>
   <div class="container">
